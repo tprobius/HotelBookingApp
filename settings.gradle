@@ -16,3 +16,4 @@ dependencyResolutionManagement {
 rootProject.name = "HotelBookingApp"
 include ':app'
 include ':data'
+include ':features:hotel'
