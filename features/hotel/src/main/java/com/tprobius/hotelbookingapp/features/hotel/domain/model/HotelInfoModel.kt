@@ -1,6 +1,6 @@
 package com.tprobius.hotelbookingapp.features.hotel.domain.model
 
-import com.tprobius.hotelbookingapp.features.hotel.presentation.adapterdelegates.ListItem
+import com.tprobius.hotelbookingapp.utils.recyclerviewadapter.ListItem
 
 data class HotelInfoModel(
     val id: Int?,

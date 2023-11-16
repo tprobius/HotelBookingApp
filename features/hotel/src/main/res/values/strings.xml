@@ -8,4 +8,6 @@
     <string name="not_included">Что не включено</string>
     <string name="amenities">Удобства</string>
     <string name="minimal_price">от %1$,d ₽</string>
+    <string name="error_message">Кажется, что-то пошло не так.\nПопробуйте ещё раз.</string>
+    <string name="try_again">Перезагрузить</string>
 </resources>

@@ -9,7 +9,12 @@ import com.tprobius.hotelbookingapp.features.hotel.domain.repository.HotelInfoAp
 import com.tprobius.hotelbookingapp.features.hotel.domain.usecases.GetHotelInfoUseCase
 import com.tprobius.hotelbookingapp.features.hotel.presentation.hotelinfofragment.HotelInfoRouter
 import com.tprobius.hotelbookingapp.features.hotel.presentation.hotelinfofragment.HotelInfoViewModel
+import com.tprobius.hotelbookingapp.features.room.domain.repository.RoomListApiRepository
+import com.tprobius.hotelbookingapp.features.room.domain.usecases.GetRoomListUseCase
+import com.tprobius.hotelbookingapp.features.room.presentation.roomlistfragment.RoomListRouter
+import com.tprobius.hotelbookingapp.features.room.presentation.roomlistfragment.RoomListViewModel
 import com.tprobius.hotelbookingapp.navigation.HotelInfoRouterImpl
+import com.tprobius.hotelbookingapp.navigation.RoomListRouterImpl
 import kotlinx.coroutines.Dispatchers
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -22,14 +27,17 @@ val netModule = module {
     single { provideApiRetrofit() }
     single { provideHotelBookingAppApi(get()) }
     single<HotelInfoApiRepository> { HotelBookingAppApiRepositoryImpl(get(), Dispatchers.IO) }
+    single<RoomListApiRepository> { HotelBookingAppApiRepositoryImpl(get(), Dispatchers.IO) }
 }
 
 val viewModelModule = module {
     viewModel { HotelInfoViewModel(get(), get()) }
+    viewModel { RoomListViewModel(get(), get(), get()) }
 }
 
 val useCasesModule = module {
     single { GetHotelInfoUseCase(get()) }
+    single { GetRoomListUseCase(get()) }
 }
 
 val navigationModule = module {
@@ -38,6 +46,7 @@ val navigationModule = module {
     single { get<Cicerone<Router>>().getNavigatorHolder() }
 
     factory<HotelInfoRouter> { HotelInfoRouterImpl(get()) }
+    factory<RoomListRouter> { RoomListRouterImpl(get()) }
 }
 
 fun provideApiRetrofit(): Retrofit.Builder {

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.hannesdorfmann.adapterdelegates4.ListDelegationAdapter
@@ -11,7 +12,6 @@ import com.tprobius.hotelbookingapp.features.hotel.databinding.FragmentHotelInfo
 import com.tprobius.hotelbookingapp.features.hotel.domain.model.AboutTheHotelModel
 import com.tprobius.hotelbookingapp.features.hotel.domain.model.HotelInfoModel
 import com.tprobius.hotelbookingapp.features.hotel.presentation.adapterdelegates.HotelInfoDelegates
-import com.tprobius.hotelbookingapp.features.hotel.presentation.adapterdelegates.ListItem
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -22,7 +22,7 @@ class HotelInfoFragment : Fragment() {
     private val binding
         get() = checkNotNull(_binding) { "Binding isn't initialized" }
 
-    private lateinit var hotelAdapter: ListDelegationAdapter<List<ListItem>>
+    private lateinit var hotelInfoAdapter: ListDelegationAdapter<List<com.tprobius.hotelbookingapp.utils.recyclerviewadapter.ListItem>>
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,10 +35,18 @@ class HotelInfoFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.getHotelInfo()
-
-        setHotelAdapter()
         setHandleState()
+        setHotelAdapter()
+        setTryAgainButton()
+    }
+
+    private fun setHandleState() {
+        viewModel.getHotelInfo()
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.state.collect {
+                handleState(it)
+            }
+        }
     }
 
     private fun handleState(state: HotelInfoState) {
@@ -51,42 +59,62 @@ class HotelInfoFragment : Fragment() {
     }
 
     private fun setHotelAdapter() {
-        hotelAdapter = ListDelegationAdapter(
+        hotelInfoAdapter = ListDelegationAdapter(
             HotelInfoDelegates.hotelInfoDelegate(),
             HotelInfoDelegates.aboutTheHotelDelegate()
         )
-        binding.recyclerView.adapter = hotelAdapter
-    }
-
-    private fun setHandleState() {
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.state.collect {
-                handleState(it)
-            }
-        }
+        binding.hotelInfoRecyclerView.adapter = hotelInfoAdapter
     }
 
     private fun showInitialState() {
-//        TODO("Not yet implemented")
+        binding.topAppBarLinearLayout.isVisible = true
+        binding.hotelInfoProgressBar.isVisible = false
+        binding.hotelInfoRecyclerView.isVisible = false
+        binding.errorImageView.isVisible = false
+        binding.errorTextView.isVisible = false
+        binding.tryAgainButton.isVisible = false
+        binding.bottomAppBarLinearLayout.isVisible = true
+        binding.roomChoosingButton.isEnabled = false
     }
 
     private fun showLoadingState() {
-//        TODO("Not yet implemented")
+        binding.topAppBarLinearLayout.isVisible = true
+        binding.hotelInfoProgressBar.isVisible = true
+        binding.hotelInfoRecyclerView.isVisible = false
+        binding.errorImageView.isVisible = false
+        binding.errorTextView.isVisible = false
+        binding.tryAgainButton.isVisible = false
+        binding.bottomAppBarLinearLayout.isVisible = true
+        binding.roomChoosingButton.isEnabled = false
     }
 
     private fun showSuccessState(hotelInfo: HotelInfoModel) {
-        val listOfHotels: MutableList<ListItem> = hotelInfoToHotelInfoItem(hotelInfo)
+        val listOfHotels: MutableList<com.tprobius.hotelbookingapp.utils.recyclerviewadapter.ListItem> =
+            hotelInfoToHotelInfoItem(hotelInfo)
+
+        binding.topAppBarLinearLayout.isVisible = true
+        binding.hotelInfoProgressBar.isVisible = false
+        binding.hotelInfoRecyclerView.isVisible = true
+        binding.errorImageView.isVisible = false
+        binding.errorTextView.isVisible = false
+        binding.tryAgainButton.isVisible = false
+        binding.bottomAppBarLinearLayout.isVisible = true
+        binding.roomChoosingButton.isEnabled = true
+
         viewLifecycleOwner.lifecycleScope.launch {
-            hotelAdapter.apply {
+            hotelInfoAdapter.apply {
                 items = listOfHotels
                 notifyDataSetChanged()
             }
         }
+
+        setOnButtonClick(hotelInfo)
     }
 
-    private fun hotelInfoToHotelInfoItem(hotelInfo: HotelInfoModel): MutableList<ListItem> {
+    private fun hotelInfoToHotelInfoItem(hotelInfo: HotelInfoModel): MutableList<com.tprobius.hotelbookingapp.utils.recyclerviewadapter.ListItem> {
         val listOfHotels = mutableListOf<HotelInfoModel>()
-        val listOfItems = mutableListOf<ListItem>()
+        val listOfItems =
+            mutableListOf<com.tprobius.hotelbookingapp.utils.recyclerviewadapter.ListItem>()
         listOfHotels.add(
             HotelInfoModel(
                 hotelInfo.id,
@@ -107,7 +135,7 @@ class HotelInfoFragment : Fragment() {
 
     private fun addAboutTheHotelInfo(
         listOfHotels: MutableList<HotelInfoModel>,
-        listOfItems: MutableList<ListItem>
+        listOfItems: MutableList<com.tprobius.hotelbookingapp.utils.recyclerviewadapter.ListItem>
     ) {
         listOfHotels.forEach {
             listOfItems.add(it)
@@ -120,7 +148,31 @@ class HotelInfoFragment : Fragment() {
         }
     }
 
+    private fun setOnButtonClick(hotelInfo: HotelInfoModel) {
+        binding.roomChoosingButton.setOnClickListener {
+            hotelInfo.name?.let { hotelName -> viewModel.openRoomInfo(hotelName) }
+        }
+    }
+
     private fun showErrorState() {
-//        TODO("Not yet implemented")
+        binding.topAppBarLinearLayout.isVisible = true
+        binding.hotelInfoProgressBar.isVisible = false
+        binding.hotelInfoRecyclerView.isVisible = false
+        binding.errorImageView.isVisible = true
+        binding.errorTextView.isVisible = true
+        binding.tryAgainButton.isVisible = true
+        binding.bottomAppBarLinearLayout.isVisible = true
+        binding.roomChoosingButton.isEnabled = false
+    }
+
+    private fun setTryAgainButton() {
+        binding.tryAgainButton.setOnClickListener {
+            viewModel.getHotelInfo()
+        }
+    }
+
+    override fun onDestroy() {
+        _binding = null
+        super.onDestroy()
     }
 }

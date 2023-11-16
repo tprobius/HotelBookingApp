@@ -10,6 +10,5 @@ data class AboutTheHotel(
     @SerializedName("peculiarities")
     val peculiarities: List<String?>?
 ) {
-    fun toAboutTheHotelModel() =
-        AboutTheHotelModel(description, peculiarities)
+    fun toAboutTheHotelModel() = AboutTheHotelModel(description, peculiarities)
 }

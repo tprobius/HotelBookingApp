@@ -2,6 +2,7 @@ package com.tprobius.hotelbookingapp.data.model
 
 
 import com.google.gson.annotations.SerializedName
+import com.tprobius.hotelbookingapp.features.room.domain.model.RoomInfoModel
 
 data class RoomInfo(
     @SerializedName("id")
@@ -16,4 +17,6 @@ data class RoomInfo(
     val peculiarities: List<String?>?,
     @SerializedName("image_urls")
     val imageUrls: List<String?>?
-)
+) {
+    fun mapTooRoomInfoModel() = RoomInfoModel(id, name, price, pricePer, peculiarities, imageUrls)
+}

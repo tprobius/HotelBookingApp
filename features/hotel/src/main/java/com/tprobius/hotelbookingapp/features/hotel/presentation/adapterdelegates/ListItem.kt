@@ -1,3 +1,0 @@
-package com.tprobius.hotelbookingapp.features.hotel.presentation.adapterdelegates
-
-interface ListItem

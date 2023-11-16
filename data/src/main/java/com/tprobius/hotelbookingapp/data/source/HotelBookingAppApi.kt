@@ -11,7 +11,7 @@ interface HotelBookingAppApi {
     suspend fun getHotelInfo(): HotelInfo
 
     @GET("8b532701-709e-4194-a41c-1a903af00195/")
-    fun getRoomList(): Flow<RoomList>
+    suspend fun getRoomList(): RoomList
 
     @GET("63866c74-d593-432c-af8e-f279d1a8d2ff/")
     fun getBookingInfo(): Flow<BookingInfo>

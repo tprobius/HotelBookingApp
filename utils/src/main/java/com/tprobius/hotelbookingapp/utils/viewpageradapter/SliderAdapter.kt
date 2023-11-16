@@ -1,4 +1,4 @@
-package com.tprobius.hotelbookingapp.features.hotel.presentation.utils
+package com.tprobius.hotelbookingapp.utils.viewpageradapter
 
 import android.graphics.Bitmap
 import android.view.LayoutInflater
@@ -13,7 +13,7 @@ import com.bumptech.glide.load.MultiTransformation
 import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool
 import com.bumptech.glide.load.resource.bitmap.BitmapTransformation
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
-import com.tprobius.hotelbookingapp.features.hotel.R
+import com.tprobius.hotelbookingapp.utils.R
 import java.nio.charset.Charset
 import java.security.MessageDigest
 

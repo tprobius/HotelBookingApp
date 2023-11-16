@@ -14,16 +14,17 @@ class HotelInfoViewModel(
     private val _state: MutableStateFlow<HotelInfoState> = MutableStateFlow(HotelInfoState.Initial)
     val state: StateFlow<HotelInfoState> = _state
 
-    init {
-        _state.value = HotelInfoState.Initial
-    }
-
     fun getHotelInfo() {
         viewModelScope.launch {
             _state.value = HotelInfoState.Loading
-            getHotelInfoUseCase().collect {
-                _state.value = HotelInfoState.Success(it)
+            try {
+                getHotelInfoUseCase().collect {
+                    _state.value = HotelInfoState.Success(it)
+                }
+            } catch (e: Exception) {
+                _state.value = HotelInfoState.Error
             }
+
         }
     }
 
