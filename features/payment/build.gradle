@@ -1,14 +1,14 @@
 plugins {
-    id 'com.android.application'
+    id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
 }
 
 android {
-    namespace 'com.tprobius.hotelbookingapp'
+    namespace 'com.tprobius.hotelbookingapp.features.payment'
     compileSdk 34
 
     defaultConfig {
-        applicationId "com.tprobius.hotelbookingapp"
         minSdk 24
         targetSdk 33
         versionCode 1
@@ -30,16 +30,15 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
+    buildFeatures {
+        viewBinding true
+    }
 }
 
 dependencies {
     // Project
-    implementation(project(":data"))
     implementation(project(":utils"))
-    implementation(project(":features:hotel"))
-    implementation(project(":features:room"))
-    implementation(project(":features:booking"))
-    implementation(project(":features:payment"))
 
     // Default
     implementation 'androidx.core:core-ktx:1.9.0'
@@ -48,16 +47,15 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 
     // Koin
-    implementation "io.insert-koin:koin-android:3.4.3"
+    implementation 'io.insert-koin:koin-android:3.4.3'
+
+    // AdapterDelegates
+    implementation 'com.hannesdorfmann:adapterdelegates4-kotlin-dsl:4.3.2'
+    implementation 'com.hannesdorfmann:adapterdelegates4-kotlin-dsl-viewbinding:4.3.2'
+
+    // Glide
+    implementation 'com.github.bumptech.glide:glide:4.16.0'
 
     // Cicerone
-    implementation "com.github.terrakok:cicerone:7.1"
-
-    // Retrofit
-    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
-    implementation 'com.squareup.okhttp3:okhttp:4.9.0'
-    implementation 'com.squareup.okhttp3:logging-interceptor:4.9.0'
-
-    // Gson
-    implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
+    implementation 'com.github.terrakok:cicerone:7.1'
 }
