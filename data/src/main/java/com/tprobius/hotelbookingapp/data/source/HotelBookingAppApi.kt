@@ -1,9 +1,9 @@
 package com.tprobius.hotelbookingapp.data.source
 
+
 import com.tprobius.hotelbookingapp.data.model.BookingInfo
 import com.tprobius.hotelbookingapp.data.model.HotelInfo
 import com.tprobius.hotelbookingapp.data.model.RoomList
-import kotlinx.coroutines.flow.Flow
 import retrofit2.http.GET
 
 interface HotelBookingAppApi {
@@ -14,7 +14,7 @@ interface HotelBookingAppApi {
     suspend fun getRoomList(): RoomList
 
     @GET("63866c74-d593-432c-af8e-f279d1a8d2ff/")
-    fun getBookingInfo(): Flow<BookingInfo>
+    suspend fun getBookingInfo(): BookingInfo
 
     companion object {
         const val BASE_URL = "https://run.mocky.io/v3/"

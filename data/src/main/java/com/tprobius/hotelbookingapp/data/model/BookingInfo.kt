@@ -1,7 +1,7 @@
 package com.tprobius.hotelbookingapp.data.model
 
-
 import com.google.gson.annotations.SerializedName
+import com.tprobius.hotelbookingapp.features.booking.domain.model.BookingInfoModel
 
 data class BookingInfo(
     @SerializedName("id")
@@ -34,4 +34,23 @@ data class BookingInfo(
     val fuelCharge: Int?,
     @SerializedName("service_charge")
     val serviceCharge: Int?
-)
+) {
+    fun mapToBookingInfoModel() =
+        BookingInfoModel(
+            id,
+            hotelName,
+            hotelAdress,
+            horating,
+            ratingName,
+            departure,
+            arrivalCountry,
+            tourDateStart,
+            tourDateStop,
+            numberOfNights,
+            room,
+            nutrition,
+            tourPrice,
+            fuelCharge,
+            serviceCharge
+        )
+}

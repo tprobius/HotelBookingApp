@@ -9,11 +9,12 @@ import com.tprobius.hotelbookingapp.features.hotel.databinding.ItemAboutTheHotel
 import com.tprobius.hotelbookingapp.features.hotel.databinding.ItemHotelInfoBinding
 import com.tprobius.hotelbookingapp.features.hotel.domain.model.AboutTheHotelModel
 import com.tprobius.hotelbookingapp.features.hotel.domain.model.HotelInfoModel
+import com.tprobius.hotelbookingapp.utils.recyclerviewadapter.ListItem
 import com.tprobius.hotelbookingapp.utils.viewpageradapter.SliderAdapter
 
 object HotelInfoDelegates {
     fun hotelInfoDelegate() =
-        adapterDelegateViewBinding<HotelInfoModel, com.tprobius.hotelbookingapp.utils.recyclerviewadapter.ListItem, ItemHotelInfoBinding>(
+        adapterDelegateViewBinding<HotelInfoModel, ListItem, ItemHotelInfoBinding>(
             { layoutInflater, parent ->
                 ItemHotelInfoBinding.inflate(layoutInflater, parent, false)
             }
@@ -34,7 +35,7 @@ object HotelInfoDelegates {
         }
 
     fun aboutTheHotelDelegate() =
-        adapterDelegateViewBinding<AboutTheHotelModel, com.tprobius.hotelbookingapp.utils.recyclerviewadapter.ListItem, ItemAboutTheHotelBinding>(
+        adapterDelegateViewBinding<AboutTheHotelModel, ListItem, ItemAboutTheHotelBinding>(
             { layoutInflater, parent ->
                 ItemAboutTheHotelBinding.inflate(layoutInflater, parent, false)
             }

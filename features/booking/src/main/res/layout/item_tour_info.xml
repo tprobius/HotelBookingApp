@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/tour_cardView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="4dp"
+    android:layout_marginBottom="4dp"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="0dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="-7dp"
+        tools:layout_editor_absoluteY="51dp">
+
+        <TextView
+            android:id="@+id/tourPrice_textView"
+            style="@style/gray16regular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/departure"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/departureValue_textView"
+            style="@style/black16"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="76dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tourPrice_textView"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Санкт-Петербург" />
+
+        <TextView
+            android:id="@+id/fuelCharge_textView"
+            style="@style/gray16regular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/arrival"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/departureValue_textView" />
+
+        <TextView
+            android:id="@+id/arrivalValue_textView"
+            style="@style/black16"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="76dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tourPrice_textView"
+            app:layout_constraintTop_toBottomOf="@id/departureValue_textView"
+            tools:text="Египет, Хургада" />
+
+        <TextView
+            android:id="@+id/serviceCharge_textView"
+            style="@style/gray16regular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/dates"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/arrivalValue_textView" />
+
+        <TextView
+            android:id="@+id/datesValue_textView"
+            style="@style/black16"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="76dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tourPrice_textView"
+            app:layout_constraintTop_toBottomOf="@id/arrivalValue_textView"
+            tools:text="19.09.2023 – 27.09.2023" />
+
+        <TextView
+            android:id="@+id/totalPrice_textView"
+            style="@style/gray16regular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/number_of_nights"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/datesValue_textView" />
+
+        <TextView
+            android:id="@+id/nightsValue_textView"
+            style="@style/black16"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="76dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tourPrice_textView"
+            app:layout_constraintTop_toBottomOf="@id/datesValue_textView"
+            tools:text="7 ночей" />
+
+        <TextView
+            android:id="@+id/hotel_textView"
+            style="@style/gray16regular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/hotel"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/nightsValue_textView" />
+
+        <TextView
+            android:id="@+id/hotelValue_textView"
+            style="@style/black16"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="76dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tourPrice_textView"
+            app:layout_constraintTop_toBottomOf="@id/nightsValue_textView"
+            tools:text="Steigenberger Makadi" />
+
+        <TextView
+            android:id="@+id/room_textView"
+            style="@style/gray16regular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/room"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/hotelValue_textView" />
+
+        <TextView
+            android:id="@+id/roomValue_textView"
+            style="@style/black16"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="76dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tourPrice_textView"
+            app:layout_constraintTop_toBottomOf="@id/hotelValue_textView"
+            tools:text="Стандартный с видом на бассейн или сад" />
+
+        <TextView
+            android:id="@+id/nutrition_textView"
+            style="@style/gray16regular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/nutrition"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/roomValue_textView" />
+
+        <TextView
+            android:id="@+id/nutritionValue_textView"
+            style="@style/black16"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="76dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tourPrice_textView"
+            app:layout_constraintTop_toBottomOf="@id/roomValue_textView"
+            tools:text="Все включено" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

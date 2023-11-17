@@ -71,14 +71,14 @@ class RoomListFragment : Fragment() {
     }
 
     private fun showInitialState() {
-        binding.roomTopAppBarLinearLayout.isVisible = true
+        binding.topAppBarLinearLayout.isVisible = true
         binding.roomInfoTitleTextView.isVisible = true
         binding.roomListRecyclerView.isVisible = false
         binding.constraintLayout.isVisible = false
     }
 
     private fun showLoadingState() {
-        binding.roomTopAppBarLinearLayout.isVisible = true
+        binding.topAppBarLinearLayout.isVisible = true
         binding.roomInfoTitleTextView.isVisible = true
         binding.roomListRecyclerView.isVisible = false
         binding.constraintLayout.isVisible = true
@@ -91,7 +91,7 @@ class RoomListFragment : Fragment() {
     private fun showSuccessState(roomInfo: RoomListModel) {
         val listOfRooms = roomInfoToRoomInfoItem(roomInfo)
 
-        binding.roomTopAppBarLinearLayout.isVisible = true
+        binding.topAppBarLinearLayout.isVisible = true
         binding.roomInfoTitleTextView.isVisible = true
         binding.roomListRecyclerView.isVisible = true
         binding.constraintLayout.isVisible = false
@@ -127,7 +127,7 @@ class RoomListFragment : Fragment() {
     }
 
     private fun showErrorState() {
-        binding.roomTopAppBarLinearLayout.isVisible = true
+        binding.topAppBarLinearLayout.isVisible = true
         binding.roomInfoTitleTextView.isVisible = true
         binding.roomListRecyclerView.isVisible = false
         binding.constraintLayout.isVisible = true

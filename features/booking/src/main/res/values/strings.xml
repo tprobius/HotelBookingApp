@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="error_message">Кажется, что-то пошло не так.\nПопробуйте ещё раз.</string>
+    <string name="try_again">Перезагрузить</string>
+    <string name="booking">Бронирование</string>
+    <string name="departure">Вылет из</string>
+    <string name="arrival">Страна, город</string>
+    <string name="dates">Даты</string>
+    <string name="number_of_nights">Кол-во ночей</string>
+    <string name="hotel">Отель</string>
+    <string name="room">Номер</string>
+    <string name="nutrition">Питание</string>
+    <string name="tour">Тур</string>
+    <string name="fuel_charge">Топливный сбор</string>
+    <string name="total_cost">К оплате</string>
+    <string name="service_charge">Сервисный сбор</string>
+    <string name="phone_number">Номер телефона</string>
+    <string name="email">Почта</string>
+    <string name="customer_info">Информация о покупателе</string>
+    <string name="customer_info_comment">Эти данные никому не передаются. После оплаты мы вышли чек на указанный вами номер и почту</string>
+    <string name="add_new_tourist">Добавить туриста</string>
+    <string name="passport">Номер загранпаспорта</string>
+    <string name="first_tourist">Первый турист</string>
+    <string name="first_name">Имя</string>
+    <string name="last_name">Фамилия</string>
+    <string name="date_of_birth">Дата рождения</string>
+    <string name="citizenship">Гражданство</string>
+    <string name="passport_expiration_date">Срок действия загранпаспорта</string>
+    <string name="payment">"Оплатить %1$,d ₽"</string>
+    <string name="booking_price">%1$,d ₽</string>
+</resources>
