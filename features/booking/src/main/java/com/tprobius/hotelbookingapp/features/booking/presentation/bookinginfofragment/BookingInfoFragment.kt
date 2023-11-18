@@ -46,6 +46,7 @@ class BookingInfoFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setHandleState()
         setBookingAdapter()
+        setTryAgainButton()
         setOnPayButton()
     }
 
@@ -192,6 +193,12 @@ class BookingInfoFragment : Fragment() {
         binding.tryAgainButton.isVisible = true
         binding.topAppBarLinearLayout.isVisible = true
         binding.payBookingButton.isEnabled = false
+    }
+
+    private fun setTryAgainButton() {
+        binding.tryAgainButton.setOnClickListener {
+            viewModel.getBookingInfo()
+        }
     }
 
     private fun setOnPayButton() {

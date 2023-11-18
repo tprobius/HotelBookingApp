@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white">
@@ -44,36 +45,45 @@
         android:id="@+id/payment_imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="122dp"
         android:contentDescription="@string/content_description"
+        app:layout_constraintBottom_toTopOf="@+id/paymentMessage_textView"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/topAppBar_linearLayout"
+        app:layout_constraintTop_toBottomOf="@+id/topAppBar_linearLayout"
+        app:layout_constraintVertical_chainStyle="packed"
         app:srcCompat="@drawable/ic_payment" />
 
     <TextView
         android:id="@+id/paymentMessage_textView"
         style="@style/black22medium"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
         android:text="@string/accepting"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/paymentComment_textView"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/payment_imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/payment_imageView" />
 
     <TextView
         android:id="@+id/paymentComment_textView"
         style="@style/gray16regular"
-        android:layout_width="0dp"
+        android:layout_width="366dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="8dp"
         android:text="@string/comment"
         android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bottomAppBar_linearLayout"
+        app:layout_constraintEnd_toEndOf="@id/paymentMessage_textView"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@id/paymentMessage_textView"
         app:layout_constraintTop_toBottomOf="@id/paymentMessage_textView" />
 
     <LinearLayout
@@ -113,7 +123,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/topAppBar_linearLayout" />
+        app:layout_constraintTop_toBottomOf="@id/topAppBar_linearLayout"
+        tools:visibility="gone" />
 
     <ImageView
         android:id="@+id/error_imageView"
@@ -130,7 +141,8 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/topAppBar_linearLayout"
-        app:layout_constraintVertical_chainStyle="packed" />
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:visibility="gone" />
 
     <TextView
         android:id="@+id/error_textView"
@@ -148,7 +160,8 @@
         app:layout_constraintBottom_toTopOf="@id/tryAgain_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/error_imageView" />
+        app:layout_constraintTop_toBottomOf="@id/error_imageView"
+        tools:visibility="gone" />
 
     <Button
         android:id="@+id/tryAgain_button"
@@ -165,6 +178,7 @@
         app:layout_constraintBottom_toTopOf="@id/bottomAppBar_linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/error_textView" />
+        app:layout_constraintTop_toBottomOf="@id/error_textView"
+        tools:visibility="gone" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
