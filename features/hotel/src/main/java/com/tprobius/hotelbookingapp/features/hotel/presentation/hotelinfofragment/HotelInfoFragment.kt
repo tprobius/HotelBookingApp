@@ -12,6 +12,7 @@ import com.tprobius.hotelbookingapp.features.hotel.databinding.FragmentHotelInfo
 import com.tprobius.hotelbookingapp.features.hotel.domain.model.AboutTheHotelModel
 import com.tprobius.hotelbookingapp.features.hotel.domain.model.HotelInfoModel
 import com.tprobius.hotelbookingapp.features.hotel.presentation.adapterdelegates.HotelInfoDelegates
+import com.tprobius.hotelbookingapp.utils.recyclerviewadapter.ListItem
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -22,7 +23,7 @@ class HotelInfoFragment : Fragment() {
     private val binding
         get() = checkNotNull(_binding) { "Binding isn't initialized" }
 
-    private lateinit var hotelInfoAdapter: ListDelegationAdapter<List<com.tprobius.hotelbookingapp.utils.recyclerviewadapter.ListItem>>
+    private lateinit var hotelInfoAdapter: ListDelegationAdapter<List<ListItem>>
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -67,39 +68,17 @@ class HotelInfoFragment : Fragment() {
     }
 
     private fun showInitialState() {
-        binding.topAppBarLinearLayout.isVisible = true
-        binding.hotelInfoProgressBar.isVisible = false
-        binding.hotelInfoRecyclerView.isVisible = false
-        binding.errorImageView.isVisible = false
-        binding.errorTextView.isVisible = false
-        binding.tryAgainButton.isVisible = false
-        binding.bottomAppBarLinearLayout.isVisible = true
-        binding.roomChoosingButton.isEnabled = false
+        setViewsVisibility()
     }
 
     private fun showLoadingState() {
-        binding.topAppBarLinearLayout.isVisible = true
-        binding.hotelInfoProgressBar.isVisible = true
-        binding.hotelInfoRecyclerView.isVisible = false
-        binding.errorImageView.isVisible = false
-        binding.errorTextView.isVisible = false
-        binding.tryAgainButton.isVisible = false
-        binding.bottomAppBarLinearLayout.isVisible = true
-        binding.roomChoosingButton.isEnabled = false
+        setViewsVisibility(hotelInfoProgressBar = true)
     }
 
     private fun showSuccessState(hotelInfo: HotelInfoModel) {
-        val listOfHotels: MutableList<com.tprobius.hotelbookingapp.utils.recyclerviewadapter.ListItem> =
-            hotelInfoToHotelInfoItem(hotelInfo)
+        val listOfHotels: MutableList<ListItem> = hotelInfoToHotelInfoItem(hotelInfo)
 
-        binding.topAppBarLinearLayout.isVisible = true
-        binding.hotelInfoProgressBar.isVisible = false
-        binding.hotelInfoRecyclerView.isVisible = true
-        binding.errorImageView.isVisible = false
-        binding.errorTextView.isVisible = false
-        binding.tryAgainButton.isVisible = false
-        binding.bottomAppBarLinearLayout.isVisible = true
-        binding.roomChoosingButton.isEnabled = true
+        setViewsVisibility(hotelInfoRecyclerView = true, roomChoosingButton = true)
 
         viewLifecycleOwner.lifecycleScope.launch {
             hotelInfoAdapter.apply {
@@ -111,10 +90,10 @@ class HotelInfoFragment : Fragment() {
         setOnButtonClick(hotelInfo)
     }
 
-    private fun hotelInfoToHotelInfoItem(hotelInfo: HotelInfoModel): MutableList<com.tprobius.hotelbookingapp.utils.recyclerviewadapter.ListItem> {
+    private fun hotelInfoToHotelInfoItem(hotelInfo: HotelInfoModel): MutableList<ListItem> {
         val listOfHotels = mutableListOf<HotelInfoModel>()
         val listOfItems =
-            mutableListOf<com.tprobius.hotelbookingapp.utils.recyclerviewadapter.ListItem>()
+            mutableListOf<ListItem>()
         listOfHotels.add(
             HotelInfoModel(
                 hotelInfo.id,
@@ -135,7 +114,7 @@ class HotelInfoFragment : Fragment() {
 
     private fun addAboutTheHotelInfo(
         listOfHotels: MutableList<HotelInfoModel>,
-        listOfItems: MutableList<com.tprobius.hotelbookingapp.utils.recyclerviewadapter.ListItem>
+        listOfItems: MutableList<ListItem>
     ) {
         listOfHotels.forEach {
             listOfItems.add(it)
@@ -155,14 +134,23 @@ class HotelInfoFragment : Fragment() {
     }
 
     private fun showErrorState() {
-        binding.topAppBarLinearLayout.isVisible = true
-        binding.hotelInfoProgressBar.isVisible = false
-        binding.hotelInfoRecyclerView.isVisible = false
-        binding.errorImageView.isVisible = true
-        binding.errorTextView.isVisible = true
-        binding.tryAgainButton.isVisible = true
-        binding.bottomAppBarLinearLayout.isVisible = true
-        binding.roomChoosingButton.isEnabled = false
+        setViewsVisibility(errorImageView = true, errorTextView = true, tryAgainButton = true)
+    }
+
+    private fun setViewsVisibility(
+        hotelInfoProgressBar: Boolean = false,
+        hotelInfoRecyclerView: Boolean = false,
+        errorImageView: Boolean = false,
+        errorTextView: Boolean = false,
+        tryAgainButton: Boolean = false,
+        roomChoosingButton: Boolean = false
+    ) {
+        binding.hotelInfoProgressBar.isVisible = hotelInfoProgressBar
+        binding.hotelInfoRecyclerView.isVisible = hotelInfoRecyclerView
+        binding.errorImageView.isVisible = errorImageView
+        binding.errorTextView.isVisible = errorTextView
+        binding.tryAgainButton.isVisible = tryAgainButton
+        binding.roomChoosingButton.isEnabled = roomChoosingButton
     }
 
     private fun setTryAgainButton() {

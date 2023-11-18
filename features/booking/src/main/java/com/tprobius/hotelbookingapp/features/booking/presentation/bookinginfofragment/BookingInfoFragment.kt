@@ -74,50 +74,29 @@ class BookingInfoFragment : Fragment() {
             BookingInfoDelegates.tourInfoDelegates(),
             BookingInfoDelegates.customerInfoDelegates(),
             BookingInfoDelegates.touristInfoDelegate(),
-            BookingInfoDelegates.newTouristDelegate {
-                addNewTourist()
-            },
+            BookingInfoDelegates.newTouristDelegate { addNewTourist() },
             BookingInfoDelegates.costInfoDelegate()
         )
         binding.bookingInfoRecyclerView.adapter = bookingAdapter
     }
 
     private fun showInitialState() {
-        binding.topAppBarLinearLayout.isVisible = true
-        binding.bookingInfoRecyclerView.isVisible = false
-        binding.hotelInfoProgressBar.isVisible = false
-        binding.errorImageView.isVisible = false
-        binding.errorTextView.isVisible = false
-        binding.tryAgainButton.isVisible = false
-        binding.topAppBarLinearLayout.isVisible = true
-        binding.payBookingButton.text = ""
-        binding.payBookingButton.isEnabled = false
+        setViewsVisibility()
     }
 
     private fun showLoadingState() {
-        binding.topAppBarLinearLayout.isVisible = true
-        binding.bookingInfoRecyclerView.isVisible = false
-        binding.hotelInfoProgressBar.isVisible = true
-        binding.errorImageView.isVisible = false
-        binding.errorTextView.isVisible = false
-        binding.tryAgainButton.isVisible = false
-        binding.topAppBarLinearLayout.isVisible = true
-        binding.payBookingButton.text = ""
-        binding.payBookingButton.isEnabled = false
+        setViewsVisibility(hotelInfoProgressBar = true)
     }
 
+
     private fun showSuccessState(bookingInfo: BookingInfoModel) {
-        binding.payBookingButton.text =
-            "Оплатить " + ((bookingInfo.tourPrice ?: 0) + (bookingInfo.fuelCharge
-                ?: 0) + (bookingInfo.serviceCharge ?: 0)).toString() + "₽"
-        binding.topAppBarLinearLayout.isVisible = true
-        binding.bookingInfoRecyclerView.isVisible = true
-        binding.hotelInfoProgressBar.isVisible = false
-        binding.errorImageView.isVisible = false
-        binding.errorTextView.isVisible = false
-        binding.tryAgainButton.isVisible = false
-        binding.topAppBarLinearLayout.isVisible = true
-        binding.payBookingButton.isEnabled = true
+        setViewsVisibility(
+            bookingInfoRecyclerView = true,
+            payBookingButtonText = "Оплатить " + ((bookingInfo.tourPrice
+                ?: 0) + (bookingInfo.fuelCharge
+                ?: 0) + (bookingInfo.serviceCharge ?: 0)).toString() + "₽",
+            payBookingButton = true
+        )
 
         listOfItems = roomInfoToRoomInfoItem(bookingInfo)
         viewLifecycleOwner.lifecycleScope.launch {
@@ -185,14 +164,30 @@ class BookingInfoFragment : Fragment() {
         }
 
     private fun showErrorState() {
-        binding.topAppBarLinearLayout.isVisible = true
-        binding.bookingInfoRecyclerView.isVisible = false
-        binding.hotelInfoProgressBar.isVisible = false
-        binding.errorImageView.isVisible = true
-        binding.errorTextView.isVisible = true
-        binding.tryAgainButton.isVisible = true
-        binding.topAppBarLinearLayout.isVisible = true
-        binding.payBookingButton.isEnabled = false
+        setViewsVisibility(
+            errorImageView = true,
+            errorTextView = true,
+            tryAgainButton = true
+        )
+    }
+
+
+    private fun setViewsVisibility(
+        bookingInfoRecyclerView: Boolean = false,
+        hotelInfoProgressBar: Boolean = false,
+        errorImageView: Boolean = false,
+        errorTextView: Boolean = false,
+        tryAgainButton: Boolean = false,
+        payBookingButtonText: String = "Оплатить",
+        payBookingButton: Boolean = false,
+    ) {
+        binding.bookingInfoRecyclerView.isVisible = bookingInfoRecyclerView
+        binding.hotelInfoProgressBar.isVisible = hotelInfoProgressBar
+        binding.errorImageView.isVisible = errorImageView
+        binding.errorTextView.isVisible = errorTextView
+        binding.tryAgainButton.isVisible = tryAgainButton
+        binding.payBookingButton.text = payBookingButtonText
+        binding.payBookingButton.isEnabled = payBookingButton
     }
 
     private fun setTryAgainButton() {

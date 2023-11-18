@@ -71,34 +71,17 @@ class RoomListFragment : Fragment() {
     }
 
     private fun showInitialState() {
-        binding.topAppBarLinearLayout.isVisible = true
-        binding.roomInfoTitleTextView.isVisible = true
-        binding.roomListRecyclerView.isVisible = false
-        binding.constraintLayout.isVisible = false
+        setViewsVisibility()
     }
 
     private fun showLoadingState() {
-        binding.topAppBarLinearLayout.isVisible = true
-        binding.roomInfoTitleTextView.isVisible = true
-        binding.roomListRecyclerView.isVisible = false
-        binding.constraintLayout.isVisible = true
-        binding.progressBar.isVisible = true
-        binding.errorImageView.isVisible = false
-        binding.errorTextView.isVisible = false
-        binding.tryAgainButton.isVisible = false
+        setViewsVisibility(constraintLayout = true, progressBar = true)
     }
 
     private fun showSuccessState(roomInfo: RoomListModel) {
         val listOfRooms = roomInfoToRoomInfoItem(roomInfo)
 
-        binding.topAppBarLinearLayout.isVisible = true
-        binding.roomInfoTitleTextView.isVisible = true
-        binding.roomListRecyclerView.isVisible = true
-        binding.constraintLayout.isVisible = false
-        binding.progressBar.isVisible = false
-        binding.errorImageView.isVisible = false
-        binding.errorTextView.isVisible = false
-        binding.tryAgainButton.isVisible = false
+        setViewsVisibility(roomListRecyclerView = true)
 
         viewLifecycleOwner.lifecycleScope.launch {
             roomListAdapter.apply {
@@ -127,14 +110,28 @@ class RoomListFragment : Fragment() {
     }
 
     private fun showErrorState() {
-        binding.topAppBarLinearLayout.isVisible = true
-        binding.roomInfoTitleTextView.isVisible = true
-        binding.roomListRecyclerView.isVisible = false
-        binding.constraintLayout.isVisible = true
-        binding.progressBar.isVisible = false
-        binding.errorImageView.isVisible = true
-        binding.errorTextView.isVisible = true
-        binding.tryAgainButton.isVisible = true
+        setViewsVisibility(
+            constraintLayout = true,
+            errorImageView = true,
+            errorTextView = true,
+            tryAgainButton = true
+        )
+    }
+
+    private fun setViewsVisibility(
+        roomListRecyclerView: Boolean = false,
+        constraintLayout: Boolean = false,
+        progressBar: Boolean = false,
+        errorImageView: Boolean = false,
+        errorTextView: Boolean = false,
+        tryAgainButton: Boolean = false
+    ) {
+        binding.roomListRecyclerView.isVisible = roomListRecyclerView
+        binding.constraintLayout.isVisible = constraintLayout
+        binding.progressBar.isVisible = progressBar
+        binding.errorImageView.isVisible = errorImageView
+        binding.errorTextView.isVisible = errorTextView
+        binding.tryAgainButton.isVisible = tryAgainButton
     }
 
     private fun setOnBackClick() {

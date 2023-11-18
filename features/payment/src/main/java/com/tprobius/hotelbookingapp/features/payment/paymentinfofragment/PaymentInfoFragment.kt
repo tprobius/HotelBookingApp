@@ -54,57 +54,48 @@ class PaymentInfoFragment : Fragment() {
     }
 
     private fun showInitialState() {
-        binding.topAppBarLinearLayout.isVisible = true
-        binding.paymentImageView.isVisible = false
-        binding.paymentCommentTextView.isVisible = false
-        binding.paymentMessageTextView.isVisible = false
-        binding.hotelInfoProgressBar.isVisible = false
-        binding.errorImageView.isVisible = false
-        binding.errorTextView.isVisible = false
-        binding.tryAgainButton.isVisible = false
-        binding.bottomAppBarLinearLayout.isVisible = true
-        binding.bottomAppBarLinearLayout.isEnabled = false
+        setViewsVisibility()
     }
 
     private fun showLoadingState() {
-        binding.topAppBarLinearLayout.isVisible = true
-        binding.paymentImageView.isVisible = false
-        binding.paymentCommentTextView.isVisible = false
-        binding.paymentMessageTextView.isVisible = false
-        binding.hotelInfoProgressBar.isVisible = true
-        binding.errorImageView.isVisible = false
-        binding.errorTextView.isVisible = false
-        binding.tryAgainButton.isVisible = false
-        binding.bottomAppBarLinearLayout.isVisible = true
-        binding.bottomAppBarLinearLayout.isEnabled = false
+        setViewsVisibility(hotelInfoProgressBar = true)
     }
 
     private fun showSuccessState(bookingNumber: String) {
-        binding.topAppBarLinearLayout.isVisible = true
-        binding.paymentImageView.isVisible = true
-        binding.paymentCommentTextView.isVisible = true
-        binding.paymentMessageTextView.isVisible = true
-        binding.hotelInfoProgressBar.isVisible = false
-        binding.errorImageView.isVisible = false
-        binding.errorTextView.isVisible = false
-        binding.tryAgainButton.isVisible = false
-        binding.bottomAppBarLinearLayout.isVisible = true
-        binding.bottomAppBarLinearLayout.isEnabled = true
+        setViewsVisibility(
+            paymentImageView = true,
+            paymentCommentTextView = true,
+            paymentMessageTextView = true,
+            confirmPaymentButton = true
+        )
         binding.paymentCommentTextView.text = getString(R.string.comment, bookingNumber)
+
     }
 
     private fun showErrorState() {
-        binding.topAppBarLinearLayout.isVisible = true
-        binding.paymentImageView.isVisible = false
-        binding.paymentCommentTextView.isVisible = false
-        binding.paymentMessageTextView.isVisible = false
-        binding.hotelInfoProgressBar.isVisible = false
-        binding.errorImageView.isVisible = true
-        binding.errorTextView.isVisible = true
-        binding.tryAgainButton.isVisible = true
-        binding.bottomAppBarLinearLayout.isVisible = true
-        binding.bottomAppBarLinearLayout.isEnabled = false
+        setViewsVisibility(errorImageView = true, errorTextView = true, tryAgainButton = true)
     }
+
+    private fun setViewsVisibility(
+        paymentImageView: Boolean = false,
+        paymentCommentTextView: Boolean = false,
+        paymentMessageTextView: Boolean = false,
+        hotelInfoProgressBar: Boolean = false,
+        errorImageView: Boolean = false,
+        errorTextView: Boolean = false,
+        tryAgainButton: Boolean = false,
+        confirmPaymentButton: Boolean = false
+    ) {
+        binding.paymentImageView.isVisible = paymentImageView
+        binding.paymentCommentTextView.isVisible = paymentCommentTextView
+        binding.paymentMessageTextView.isVisible = paymentMessageTextView
+        binding.hotelInfoProgressBar.isVisible = hotelInfoProgressBar
+        binding.errorImageView.isVisible = errorImageView
+        binding.errorTextView.isVisible = errorTextView
+        binding.tryAgainButton.isVisible = tryAgainButton
+        binding.confirmPaymentButton.isEnabled = confirmPaymentButton
+    }
+
 
     private fun setOnBackClick() {
         binding.backImageView.setOnClickListener {
