@@ -1,0 +1,3 @@
+package com.tprobius.hotelbookingapp.utils.recyclerviewadapter
+
+interface ListItem

@@ -35,6 +35,11 @@ android {
 dependencies {
     // Project
     implementation(project(":data"))
+    implementation(project(":utils"))
+    implementation(project(":features:hotel"))
+    implementation(project(":features:room"))
+    implementation(project(":features:booking"))
+    implementation(project(":features:payment"))
 
     // Default
     implementation 'androidx.core:core-ktx:1.9.0'

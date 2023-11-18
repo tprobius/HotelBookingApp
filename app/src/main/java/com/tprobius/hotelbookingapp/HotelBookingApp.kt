@@ -3,6 +3,7 @@ package com.tprobius.hotelbookingapp
 import android.app.Application
 import com.tprobius.hotelbookingapp.di.navigationModule
 import com.tprobius.hotelbookingapp.di.netModule
+import com.tprobius.hotelbookingapp.di.useCasesModule
 import com.tprobius.hotelbookingapp.di.viewModelModule
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -14,7 +15,7 @@ class HotelBookingApp : Application() {
 
         startKoin {
             androidLogger(Level.DEBUG)
-            modules(netModule, viewModelModule, navigationModule)
+            modules(netModule, viewModelModule, useCasesModule, navigationModule)
         }
     }
 }

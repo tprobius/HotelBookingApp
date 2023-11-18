@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:id="@+id/topAppBar_linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/back_imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="14dp"
+            android:layout_marginBottom="11dp"
+            android:clickable="true"
+            android:contentDescription="@string/content_description"
+            android:focusable="true"
+            android:src="@drawable/ic_arrow_back" />
+
+        <TextView
+            android:id="@+id/paymentInfoTitle_textView"
+            style="@style/black18"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="54dp"
+            android:text="@string/paid_order"
+            android:textAlignment="center"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/payment_imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/content_description"
+        app:layout_constraintBottom_toTopOf="@+id/paymentMessage_textView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/topAppBar_linearLayout"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:srcCompat="@drawable/ic_payment" />
+
+    <TextView
+        android:id="@+id/paymentMessage_textView"
+        style="@style/black22medium"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/accepting"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/paymentComment_textView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/payment_imageView" />
+
+    <TextView
+        android:id="@+id/paymentComment_textView"
+        style="@style/gray16regular"
+        android:layout_width="366dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/comment"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@id/bottomAppBar_linearLayout"
+        app:layout_constraintEnd_toEndOf="@id/paymentMessage_textView"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@id/paymentMessage_textView"
+        app:layout_constraintTop_toBottomOf="@id/paymentMessage_textView" />
+
+    <LinearLayout
+        android:id="@+id/bottomAppBar_linearLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <Button
+            android:id="@+id/confirmPayment_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/button_primary"
+            android:letterSpacing="0.01"
+            android:text="@string/confirmation"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:tint="@color/blue" />
+
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/hotelInfo_progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/bottomAppBar_linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/topAppBar_linearLayout"
+        tools:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/error_imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        android:contentDescription="@string/content_description"
+        android:src="@drawable/ic_error"
+        app:layout_constraintBottom_toTopOf="@+id/error_textView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/topAppBar_linearLayout"
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:visibility="gone" />
+
+    <TextView
+        android:id="@+id/error_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="@font/sf_pro_display_regular"
+        android:lineSpacingExtra="4sp"
+        android:text="@string/error_message"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@id/tryAgain_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/error_imageView"
+        tools:visibility="gone" />
+
+    <Button
+        android:id="@+id/tryAgain_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/button_primary"
+        android:letterSpacing="0.01"
+        android:text="@string/try_again"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toTopOf="@id/bottomAppBar_linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/error_textView"
+        tools:visibility="gone" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
