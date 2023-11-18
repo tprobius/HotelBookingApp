@@ -40,6 +40,7 @@
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="@+id/back_imageView"
             tools:text="Steigenberger Makadi" />
+
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView

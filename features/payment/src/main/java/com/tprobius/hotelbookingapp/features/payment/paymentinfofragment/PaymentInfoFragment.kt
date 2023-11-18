@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.tprobius.hotelbookingapp.features.payment.R
@@ -53,19 +54,56 @@ class PaymentInfoFragment : Fragment() {
     }
 
     private fun showInitialState() {
-//        TODO("Not yet implemented")
+        binding.topAppBarLinearLayout.isVisible = true
+        binding.paymentImageView.isVisible = false
+        binding.paymentCommentTextView.isVisible = false
+        binding.paymentMessageTextView.isVisible = false
+        binding.hotelInfoProgressBar.isVisible = false
+        binding.errorImageView.isVisible = false
+        binding.errorTextView.isVisible = false
+        binding.tryAgainButton.isVisible = false
+        binding.bottomAppBarLinearLayout.isVisible = true
+        binding.bottomAppBarLinearLayout.isEnabled = false
     }
 
     private fun showLoadingState() {
-//        TODO("Not yet implemented")
+        binding.topAppBarLinearLayout.isVisible = true
+        binding.paymentImageView.isVisible = false
+        binding.paymentCommentTextView.isVisible = false
+        binding.paymentMessageTextView.isVisible = false
+        binding.hotelInfoProgressBar.isVisible = true
+        binding.errorImageView.isVisible = false
+        binding.errorTextView.isVisible = false
+        binding.tryAgainButton.isVisible = false
+        binding.bottomAppBarLinearLayout.isVisible = true
+        binding.bottomAppBarLinearLayout.isEnabled = false
     }
 
     private fun showSuccessState(bookingNumber: String) {
+        binding.topAppBarLinearLayout.isVisible = true
+        binding.paymentImageView.isVisible = true
+        binding.paymentCommentTextView.isVisible = true
+        binding.paymentMessageTextView.isVisible = true
+        binding.hotelInfoProgressBar.isVisible = false
+        binding.errorImageView.isVisible = false
+        binding.errorTextView.isVisible = false
+        binding.tryAgainButton.isVisible = false
+        binding.bottomAppBarLinearLayout.isVisible = true
+        binding.bottomAppBarLinearLayout.isEnabled = true
         binding.paymentCommentTextView.text = getString(R.string.comment, bookingNumber)
     }
 
     private fun showErrorState() {
-//        TODO("Not yet implemented")
+        binding.topAppBarLinearLayout.isVisible = true
+        binding.paymentImageView.isVisible = false
+        binding.paymentCommentTextView.isVisible = false
+        binding.paymentMessageTextView.isVisible = false
+        binding.hotelInfoProgressBar.isVisible = false
+        binding.errorImageView.isVisible = true
+        binding.errorTextView.isVisible = true
+        binding.tryAgainButton.isVisible = true
+        binding.bottomAppBarLinearLayout.isVisible = true
+        binding.bottomAppBarLinearLayout.isEnabled = false
     }
 
     private fun setOnBackClick() {
