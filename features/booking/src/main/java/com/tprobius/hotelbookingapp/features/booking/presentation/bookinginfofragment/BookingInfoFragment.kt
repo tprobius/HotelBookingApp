@@ -1,6 +1,7 @@
 package com.tprobius.hotelbookingapp.features.booking.presentation.bookinginfofragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -179,7 +180,7 @@ class BookingInfoFragment : Fragment() {
         errorTextView: Boolean = false,
         tryAgainButton: Boolean = false,
         payBookingButtonText: String = "Оплатить",
-        payBookingButton: Boolean = false,
+        payBookingButton: Boolean = false
     ) {
         binding.bookingInfoRecyclerView.isVisible = bookingInfoRecyclerView
         binding.hotelInfoProgressBar.isVisible = hotelInfoProgressBar
@@ -197,8 +198,18 @@ class BookingInfoFragment : Fragment() {
     }
 
     private fun setOnPayButton() {
+        var isValid = false
+
         binding.payBookingButton.setOnClickListener {
-            viewModel.openPaymentInfo()
+            viewLifecycleOwner.lifecycleScope.launch {
+                BookingInfoDelegates.isValid().collect {
+                    isValid = it
+                    Log.d("WTF?!?!?!?!?!", "$isValid")
+                }
+            }
+            if (isValid) {
+                viewModel.openPaymentInfo()
+            }
         }
     }
 

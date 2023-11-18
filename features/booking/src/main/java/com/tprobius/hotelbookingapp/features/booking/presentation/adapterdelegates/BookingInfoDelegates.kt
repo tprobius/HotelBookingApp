@@ -14,13 +14,36 @@ import com.tprobius.hotelbookingapp.features.booking.domain.model.NewTouristMode
 import com.tprobius.hotelbookingapp.features.booking.domain.model.TourInfoModel
 import com.tprobius.hotelbookingapp.features.booking.domain.model.TouristInfoModel
 import com.tprobius.hotelbookingapp.utils.recyclerviewadapter.ListItem
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 import ru.tinkoff.decoro.MaskImpl
 import ru.tinkoff.decoro.slots.PredefinedSlots
 import ru.tinkoff.decoro.slots.Slot
 import ru.tinkoff.decoro.watchers.FormatWatcher
 import ru.tinkoff.decoro.watchers.MaskFormatWatcher
 
+object Validation {
+    var phoneNumberIsValid = false
+//    var emailAddressIsValid = false
+//    var firstNameIsValid = false
+//    var lastNameIsValid = false
+//    var dateOfBirthIsValid = false
+//    var citizenshipIsValid = false
+//    var passportNumberIsValid = false
+//    var passportExpirationDateIsValid = false
+}
+
 object BookingInfoDelegates {
+    fun isValid(): Flow<Boolean> = flow { emit(Validation.phoneNumberIsValid) }
+//            &&
+//            Validation.emailAddressIsValid &&
+//            Validation.firstNameIsValid &&
+//            Validation.lastNameIsValid &&
+//            Validation.dateOfBirthIsValid &&
+//            Validation.citizenshipIsValid &&
+//            Validation.passportNumberIsValid &&
+//            Validation.passportExpirationDateIsValid
+
     fun hotelBookingInfoDelegate() =
         adapterDelegateViewBinding<HotelInfoModel, ListItem, ItemHotelBookingInfoBinding>(
             { layoutInflater, parent ->
