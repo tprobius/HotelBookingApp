@@ -32,7 +32,6 @@ class PaymentInfoFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setHandleState()
         setOnSuperClick()
-        setOnBackClick()
     }
 
     private fun setHandleState() {
@@ -94,13 +93,6 @@ class PaymentInfoFragment : Fragment() {
         binding.errorTextView.isVisible = errorTextView
         binding.tryAgainButton.isVisible = tryAgainButton
         binding.confirmPaymentButton.isEnabled = confirmPaymentButton
-    }
-
-
-    private fun setOnBackClick() {
-        binding.backImageView.setOnClickListener {
-            viewModel.backToBookingInfo()
-        }
     }
 
     private fun setOnSuperClick() {

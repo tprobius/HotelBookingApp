@@ -18,11 +18,9 @@ fun EditText.setImeActionPhone(cardView: CardView) {
     setOnEditorActionListener { _, _, _ ->
         if (text.length < PHONE_NUMBER_LENGTH) {
             cardView.setCardBackgroundColor(ContextCompat.getColor(context, R.color.rose_light))
-            Validation.phoneNumberIsValid = false
             true
         } else {
             cardView.setCardBackgroundColor(ContextCompat.getColor(context, R.color.gray_light))
-            Validation.phoneNumberIsValid = true
             false
         }
     }

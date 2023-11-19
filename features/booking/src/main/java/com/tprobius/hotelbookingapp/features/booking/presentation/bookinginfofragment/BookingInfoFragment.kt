@@ -1,11 +1,9 @@
 package com.tprobius.hotelbookingapp.features.booking.presentation.bookinginfofragment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
@@ -199,20 +197,8 @@ class BookingInfoFragment : Fragment() {
     }
 
     private fun setOnPayButton() {
-        var isValid = false
-
         binding.payBookingButton.setOnClickListener {
-            viewLifecycleOwner.lifecycleScope.launch {
-                BookingInfoDelegates.isValid().collect {
-                    isValid = it
-                    Log.d("WTF?!?!?!?!?!", "$isValid")
-                }
-            }
-            if (isValid) {
-                viewModel.openPaymentInfo()
-            } else {
-                Toast.makeText(requireContext(), "Проверьте корректность введённых данных.", Toast.LENGTH_LONG).show()
-            }
+            viewModel.openPaymentInfo()
         }
     }
 
