@@ -7,11 +7,10 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import com.hannesdorfmann.adapterdelegates4.ListDelegationAdapter
 import com.tprobius.hotelbookingapp.features.hotel.databinding.FragmentHotelInfoBinding
 import com.tprobius.hotelbookingapp.features.hotel.domain.model.AboutTheHotelModel
 import com.tprobius.hotelbookingapp.features.hotel.domain.model.HotelInfoModel
-import com.tprobius.hotelbookingapp.features.hotel.presentation.adapterdelegates.HotelInfoDelegates
+import com.tprobius.hotelbookingapp.features.hotel.presentation.adapterdelegates.HotelInfoAdapter
 import com.tprobius.hotelbookingapp.utils.recyclerviewadapter.ListItem
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -23,7 +22,7 @@ class HotelInfoFragment : Fragment() {
     private val binding
         get() = checkNotNull(_binding) { "Binding isn't initialized" }
 
-    private lateinit var hotelInfoAdapter: ListDelegationAdapter<List<ListItem>>
+    private lateinit var hotelInfoAdapter: HotelInfoAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -60,10 +59,7 @@ class HotelInfoFragment : Fragment() {
     }
 
     private fun setHotelAdapter() {
-        hotelInfoAdapter = ListDelegationAdapter(
-            HotelInfoDelegates.hotelInfoDelegate(),
-            HotelInfoDelegates.aboutTheHotelDelegate()
-        )
+        hotelInfoAdapter = HotelInfoAdapter()
         binding.hotelInfoRecyclerView.adapter = hotelInfoAdapter
     }
 
@@ -83,7 +79,6 @@ class HotelInfoFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             hotelInfoAdapter.apply {
                 items = listOfHotels
-                notifyDataSetChanged()
             }
         }
 

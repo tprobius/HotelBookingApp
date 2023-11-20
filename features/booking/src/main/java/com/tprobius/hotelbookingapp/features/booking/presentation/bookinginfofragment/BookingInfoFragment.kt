@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import com.hannesdorfmann.adapterdelegates4.ListDelegationAdapter
 import com.tprobius.hotelbookingapp.features.booking.databinding.FragmentBookingInfoBinding
 import com.tprobius.hotelbookingapp.features.booking.domain.model.BookingInfoModel
 import com.tprobius.hotelbookingapp.features.booking.domain.model.CostInfoModel
@@ -16,7 +15,7 @@ import com.tprobius.hotelbookingapp.features.booking.domain.model.HotelInfoModel
 import com.tprobius.hotelbookingapp.features.booking.domain.model.NewTouristModel
 import com.tprobius.hotelbookingapp.features.booking.domain.model.TourInfoModel
 import com.tprobius.hotelbookingapp.features.booking.domain.model.TouristInfoModel
-import com.tprobius.hotelbookingapp.features.booking.presentation.adapterdelegates.BookingInfoDelegates
+import com.tprobius.hotelbookingapp.features.booking.presentation.adapterdelegates.BookingInfoAdapter
 import com.tprobius.hotelbookingapp.utils.recyclerviewadapter.ListItem
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -28,7 +27,7 @@ class BookingInfoFragment : Fragment() {
     private val binding
         get() = checkNotNull(_binding) { "Binding isn't initialized" }
 
-    private lateinit var bookingAdapter: ListDelegationAdapter<List<ListItem>>
+    private lateinit var bookingAdapter: BookingInfoAdapter
     private var listOfItems: MutableList<ListItem> = mutableListOf()
 
     private var touristCount = 1
@@ -69,14 +68,7 @@ class BookingInfoFragment : Fragment() {
     }
 
     private fun setBookingAdapter() {
-        bookingAdapter = ListDelegationAdapter(
-            BookingInfoDelegates.hotelBookingInfoDelegate(),
-            BookingInfoDelegates.tourInfoDelegates(),
-            BookingInfoDelegates.customerInfoDelegates(),
-            BookingInfoDelegates.touristInfoDelegate(),
-            BookingInfoDelegates.newTouristDelegate { addNewTourist() },
-            BookingInfoDelegates.costInfoDelegate()
-        )
+        bookingAdapter = BookingInfoAdapter { addNewTourist() }
         binding.bookingInfoRecyclerView.adapter = bookingAdapter
     }
 
@@ -102,7 +94,6 @@ class BookingInfoFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             bookingAdapter.apply {
                 items = listOfItems
-                notifyDataSetChanged()
             }
         }
         setOnBackClick(bookingInfo)
@@ -145,7 +136,6 @@ class BookingInfoFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             bookingAdapter.apply {
                 items = listOfItems
-                notifyDataSetChanged()
             }
         }
     }
