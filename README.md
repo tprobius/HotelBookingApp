@@ -34,10 +34,10 @@
 </p>
 
 <p>  
-    <img src="./screenshots/Screenshot_20231120_144850.png" alt="hotel_screen" width="23%" height="auto">
-    <img src="./screenshots/Screenshot_20231120_144910.png" alt="room_data" width="23%" height="auto">
-    <img src="./screenshots/Screenshot_20231120_145007.png" alt="booking_screen" width="23%" height="auto">
-    <img src="./screenshots/Screenshot_20231120_145024.png" alt="payment_screen" width="23%" height="auto">
+    <img src="./screenshots/HotelScreen.png" alt="hotel_screen" width="23%" height="auto">
+    <img src="./screenshots/RoomScreen.png" alt="room_screen" width="23%" height="auto">
+    <img src="./screenshots/BookingScreen.png" alt="booking_screen" width="23%" height="auto">
+    <img src="./screenshots/PaymentScreen.png" alt="payment_screen" width="23%" height="auto">
 </p>
 
 #### Backlog

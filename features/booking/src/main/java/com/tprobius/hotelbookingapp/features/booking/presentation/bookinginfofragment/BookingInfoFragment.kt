@@ -86,7 +86,7 @@ class BookingInfoFragment : Fragment() {
         setViewsVisibility(
             bookingInfoRecyclerView = true,
             payBookingButtonText = getString(
-                R.string.price_string_format,
+                R.string.payment_string_format,
                 (bookingInfo.tourPrice ?: 0)
                     .plus(bookingInfo.fuelCharge ?: 0)
                     .plus(bookingInfo.serviceCharge ?: 0)
