@@ -33,4 +33,8 @@ class PaymentInfoViewModel(
     fun confirmBooking() {
         router.confirmPayment()
     }
+
+    fun onBackPress() {
+        router.onBackPress()
+    }
 }

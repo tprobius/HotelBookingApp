@@ -13,6 +13,6 @@ class RoomListRouterImpl(
     }
 
     override fun backToHotelInfo() {
-        router.navigateTo(getHotelInfoScreen())
+        router.backTo(getHotelInfoScreen())
     }
 }

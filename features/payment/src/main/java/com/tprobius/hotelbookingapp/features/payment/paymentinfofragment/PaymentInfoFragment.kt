@@ -1,9 +1,11 @@
 package com.tprobius.hotelbookingapp.features.payment.paymentinfofragment
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
@@ -18,6 +20,20 @@ class PaymentInfoFragment : Fragment() {
     private var _binding: FragmentPaymentInfoBinding? = null
     private val binding
         get() = checkNotNull(_binding) { "Binding isn't initialized" }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        val callback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                viewModel.onBackPress()
+            }
+        }
+
+        requireActivity().onBackPressedDispatcher.addCallback(
+            this,
+            callback
+        )
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
