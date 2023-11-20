@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import com.tprobius.hotelbookingapp.features.booking.R
 import com.tprobius.hotelbookingapp.features.booking.databinding.FragmentBookingInfoBinding
 import com.tprobius.hotelbookingapp.features.booking.domain.model.BookingInfoModel
 import com.tprobius.hotelbookingapp.features.booking.domain.model.CostInfoModel
@@ -84,9 +85,12 @@ class BookingInfoFragment : Fragment() {
     private fun showSuccessState(bookingInfo: BookingInfoModel) {
         setViewsVisibility(
             bookingInfoRecyclerView = true,
-            payBookingButtonText = "Оплатить " + ((bookingInfo.tourPrice
-                ?: 0) + (bookingInfo.fuelCharge
-                ?: 0) + (bookingInfo.serviceCharge ?: 0)).toString() + "₽",
+            payBookingButtonText = getString(
+                R.string.price_string_format,
+                (bookingInfo.tourPrice ?: 0)
+                    .plus(bookingInfo.fuelCharge ?: 0)
+                    .plus(bookingInfo.serviceCharge ?: 0)
+            ).replace(',', ' '),
             payBookingButton = true
         )
 
@@ -136,21 +140,22 @@ class BookingInfoFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             bookingAdapter.apply {
                 items = listOfItems
+                notifyDataSetChanged()
             }
         }
     }
 
     private fun touristOrder() =
         when (touristCount) {
-            1 -> "Второй"
-            2 -> "Третий"
-            3 -> "Чертвертый"
-            4 -> "Пятый"
-            5 -> "Шестой"
-            6 -> "Седьмой"
-            7 -> "Восьмой"
-            8 -> "Девятый"
-            else -> "Десятый"
+            1 -> SECOND
+            2 -> THIRD
+            3 -> FOURTH
+            4 -> FIFTH
+            5 -> SIXTH
+            6 -> SEVENTH
+            7 -> EIGHTH
+            8 -> NINTH
+            else -> TENTH
         }
 
     private fun showErrorState() {
@@ -201,5 +206,17 @@ class BookingInfoFragment : Fragment() {
     override fun onDestroy() {
         _binding = null
         super.onDestroy()
+    }
+
+    companion object {
+        const val SECOND = "Второй"
+        const val THIRD = "Третий"
+        const val FOURTH = "Чертвертый"
+        const val FIFTH = "Пятый"
+        const val SIXTH = "Шестой"
+        const val SEVENTH = "Седьмой"
+        const val EIGHTH = "Восьмой"
+        const val NINTH = "Девятый"
+        const val TENTH = "Десятый"
     }
 }

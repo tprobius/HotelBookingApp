@@ -1,6 +1,7 @@
 package com.tprobius.hotelbookingapp.features.booking.presentation.adapterdelegates
 
 import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegateViewBinding
+import com.tprobius.hotelbookingapp.features.booking.R
 import com.tprobius.hotelbookingapp.features.booking.databinding.ItemCostInfoBinding
 import com.tprobius.hotelbookingapp.features.booking.databinding.ItemCustomerInfoBinding
 import com.tprobius.hotelbookingapp.features.booking.databinding.ItemHotelBookingInfoBinding
@@ -28,7 +29,11 @@ object BookingInfoDelegates {
             }
         ) {
             bind {
-                binding.hotelRatingChip.text = "${item.hotelRating} ${item.ratingName}"
+                binding.hotelRatingChip.text = getString(
+                    R.string.rating_string_format,
+                    item.hotelRating ?: 0,
+                    item.ratingName ?: ""
+                )
                 binding.hotelNameTextView.text = item.hotelName
                 binding.hotelAddressTextView.text = item.hotelAddress
             }
@@ -43,7 +48,11 @@ object BookingInfoDelegates {
             bind {
                 binding.departureValueTextView.text = item.departure
                 binding.arrivalValueTextView.text = item.arrivalCountry
-                binding.datesValueTextView.text = "${item.tourDateStart} - ${item.tourDateStop}"
+                binding.datesValueTextView.text = getString(
+                    R.string.dates_string_format,
+                    item.tourDateStart ?: 0,
+                    item.tourDateStop ?: 0
+                )
                 binding.nightsValueTextView.text = item.numberOfNights.toString()
                 binding.hotelValueTextView.text = item.hotelName
                 binding.roomValueTextView.text = item.room
@@ -117,7 +126,10 @@ object BookingInfoDelegates {
             bind {
                 var isOpen = true
 
-                binding.titleTextView.text = "${item.touristCount} турист"
+                binding.titleTextView.text = getString(
+                    R.string.tourist_count_string_format,
+                    item.touristCount ?: 1
+                )
 
                 internationalPassportFormatWatcher.installOn(binding.passportEditText)
                 dateOfBirthFormatWatcher.installOn(binding.dateOfBirthEditText)
@@ -167,12 +179,24 @@ object BookingInfoDelegates {
             }
         ) {
             bind {
-                binding.tourPriceValueTextView.text = "${item.tourPrice} ₽"
-                binding.fuelChargeValueTextView.text = "${item.fuelCharge} ₽"
-                binding.serviceChargeValueTextView.text = "${item.serviceCharge} ₽"
-                binding.totalPriceValueTextView.text = " ${
-                    (item.tourPrice ?: 0).plus(item.fuelCharge ?: 0).plus(item.serviceCharge ?: 0)
-                } ₽"
+                binding.tourPriceValueTextView.text = getString(
+                    R.string.price_string_format,
+                    item.tourPrice ?: 0
+                ).replace(',', ' ')
+                binding.fuelChargeValueTextView.text = getString(
+                    R.string.price_string_format,
+                    item.fuelCharge ?: 0
+                ).replace(',', ' ')
+                binding.serviceChargeValueTextView.text = getString(
+                    R.string.price_string_format,
+                    item.serviceCharge ?: 0
+                ).replace(',', ' ')
+                binding.totalPriceValueTextView.text = getString(
+                    R.string.price_string_format,
+                    (item.tourPrice ?: 0)
+                        .plus(item.fuelCharge ?: 0)
+                        .plus(item.serviceCharge ?: 0)
+                ).replace(',', ' ')
             }
         }
 }
