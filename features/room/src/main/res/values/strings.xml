@@ -4,6 +4,6 @@
     <string name="content_description">Content description</string>
     <string name="more_info">Подробнее о номере</string>
     <string name="room_booking">Выбрать номер</string>
-    <string name="price">%1$,d ₽</string>
+    <string name="price_string_format">%1$,d ₽</string>
     <string name="try_again">Перезагрузить</string>
 </resources>

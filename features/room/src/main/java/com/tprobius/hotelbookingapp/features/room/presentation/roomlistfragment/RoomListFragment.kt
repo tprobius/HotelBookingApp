@@ -7,11 +7,10 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import com.hannesdorfmann.adapterdelegates4.ListDelegationAdapter
 import com.tprobius.hotelbookingapp.features.room.databinding.FragmentRoomInfoBinding
 import com.tprobius.hotelbookingapp.features.room.domain.model.RoomInfoModel
 import com.tprobius.hotelbookingapp.features.room.domain.model.RoomListModel
-import com.tprobius.hotelbookingapp.features.room.presentation.adapterdelegates.RoomListDelegates
+import com.tprobius.hotelbookingapp.features.room.presentation.adapterdelegates.RoomListAdapter
 import com.tprobius.hotelbookingapp.utils.recyclerviewadapter.ListItem
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -26,7 +25,7 @@ class RoomListFragment : Fragment() {
     private val binding
         get() = checkNotNull(_binding) { "Binding isn't initialized" }
 
-    private lateinit var roomListAdapter: ListDelegationAdapter<List<ListItem>>
+    private lateinit var roomListAdapter: RoomListAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -64,9 +63,7 @@ class RoomListFragment : Fragment() {
     }
 
     private fun setRoomListAdapter() {
-        roomListAdapter = ListDelegationAdapter(
-            RoomListDelegates.roomInfoDelegate { viewModel.openBookingInfo() }
-        )
+        roomListAdapter = RoomListAdapter { viewModel.openBookingInfo() }
         binding.roomListRecyclerView.adapter = roomListAdapter
     }
 
@@ -86,14 +83,13 @@ class RoomListFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             roomListAdapter.apply {
                 items = listOfRooms
-                notifyDataSetChanged()
             }
         }
         binding.roomInfoTitleTextView.text = viewModel.getHotelName()
     }
 
-    private fun roomInfoToRoomInfoItem(roomInfo: RoomListModel): MutableList<RoomInfoModel> {
-        val listOfRooms = mutableListOf<RoomInfoModel>()
+    private fun roomInfoToRoomInfoItem(roomInfo: RoomListModel): MutableList<ListItem> {
+        val listOfRooms = mutableListOf<ListItem>()
         roomInfo.rooms?.forEach { room ->
             listOfRooms.add(
                 RoomInfoModel(

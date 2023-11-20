@@ -24,7 +24,10 @@ object RoomListDelegates {
 
             bind {
                 binding.roomNameTextView.text = item.name
-                binding.roomPriceTextView.text = "${item.price.toString()} ₽"
+                binding.roomPriceTextView.text = getString(
+                    R.string.price_string_format,
+                    item.price ?: 0
+                ).replace(',', ' ')
                 binding.roomPriceCommentTextView.text = item.pricePer
                 item.peculiarities?.forEach { tagName ->
                     binding.roomInfoChipGroup.addView(tagName?.let { createChip(context, it) })

@@ -7,7 +7,8 @@
     <string name="the_most_necessary">Самое необходимое</string>
     <string name="not_included">Что не включено</string>
     <string name="amenities">Удобства</string>
-    <string name="minimal_price">от %1$,d ₽</string>
+    <string name="minimal_price_string_format">от %1$,d ₽</string>
+    <string name="rating_string_format">"%1$d %2$s"</string>
     <string name="error_message">Кажется, что-то пошло не так.\nПопробуйте ещё раз.</string>
     <string name="try_again">Перезагрузить</string>
 </resources>

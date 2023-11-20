@@ -6,5 +6,4 @@
     <string name="comment">Подтверждение заказа №%1$s может занять некоторое время (от 1 часа до суток).\nКак только мы получим ответ от туроператора, вам на почту придет уведомление.</string>
     <string name="payment_title">Заказ оплачен</string>
     <string name="confirmation">Супер!</string>
-    <string name="paid_order">Заказ оплачен</string>
 </resources>

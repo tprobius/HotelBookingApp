@@ -58,7 +58,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:background="@drawable/button_secondary"
-            android:drawableRight="@drawable/ic_arrow"
+            android:drawableStart="@drawable/ic_arrow"
             android:drawableTint="@color/blue"
             android:text="@string/more_info"
             android:textAllCaps="false"

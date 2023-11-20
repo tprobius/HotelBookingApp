@@ -30,11 +30,11 @@ class PaymentInfoViewModel(
         }
     }
 
-    fun backToBookingInfo() {
-        router.backToBookingInfo()
-    }
-
     fun confirmBooking() {
         router.confirmPayment()
+    }
+
+    fun onBackPress() {
+        router.onBackPress()
     }
 }

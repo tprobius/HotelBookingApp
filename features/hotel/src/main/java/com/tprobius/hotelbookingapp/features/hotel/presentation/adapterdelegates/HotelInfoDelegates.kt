@@ -26,10 +26,17 @@ object HotelInfoDelegates {
 
             bind {
                 sliderAdapter.submitList(item.imageUrls)
-                binding.hotelRatingChip.text = "${item.rating} ${item.ratingName}"
+                binding.hotelRatingChip.text = getString(
+                    R.string.rating_string_format,
+                    item.rating ?: 0,
+                    item.ratingName ?: ""
+                )
                 binding.hotelNameTextView.text = item.name
                 binding.hotelAddressTextView.text = item.address
-                binding.hotelPriceTextView.text = "от ${item.minimalPrice} ₽"
+                binding.hotelPriceTextView.text = getString(
+                    R.string.minimal_price_string_format,
+                    item.minimalPrice ?: 0
+                ).replace(',', ' ')
                 binding.priceCommentTextView.text = item.priceForIt
             }
         }

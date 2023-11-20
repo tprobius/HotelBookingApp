@@ -26,6 +26,9 @@
     <string name="date_of_birth">Дата рождения</string>
     <string name="citizenship">Гражданство</string>
     <string name="passport_expiration_date">Срок действия загранпаспорта</string>
-    <string name="payment">"Оплатить %1$,d ₽"</string>
-    <string name="booking_price">%1$,d ₽</string>
+    <string name="rating_string_format">"%1$d %2$s"</string>
+    <string name="dates_string_format">"%1$s - %2$s"</string>
+    <string name="tourist_count_string_format">"%1$s турист"</string>
+    <string name="payment_string_format">"Оплатить %1$,d ₽"</string>
+    <string name="price_string_format">%1$,d ₽</string>
 </resources>
