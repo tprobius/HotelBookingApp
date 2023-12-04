@@ -9,7 +9,7 @@
 - MVVM + UDF
 - AdapterDelegates + DiffUtils
 - View binding
-- Coroutine + Flow
+- Coroutines + Flow
 - Cicerone
 - Koin
 - Room
